@@ -1,0 +1,39 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "crewai_persistence_mongodb"
+version = "0.1.0"
+description = "MongoDB persistence backend for CrewAI Flows with built-in message pruning via agentstate-reducer"
+authors = [{name = "Kamal", email = "skamalj@github.com"}]
+readme = "README.md"
+requires-python = ">=3.10,<3.14"
+dependencies = [
+    "crewai",
+    "pymongo",
+]
+keywords = ["crewai", "flows", "persistence", "mongodb", "agent-state", "message-reducer"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+
+[project.optional-dependencies]
+reducer = ["agentstate-reducer>=0.3.0"]
+
+[project.urls]
+Homepage = "https://github.com/skamalj/crewai_persistence_mongodb"
+Repository = "https://github.com/skamalj/crewai_persistence_mongodb.git"
+
+[dependency-groups]
+dev = [
+    "pytest>=7.0",
+    "pytest-cov",
+    "crewai_persistence_mongodb[reducer]",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/crewai_persistence_mongodb"]
